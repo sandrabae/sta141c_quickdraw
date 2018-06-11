@@ -33,11 +33,16 @@ y = np.concatenate((cat[:5000,-1], sheep[:5000,-1], book[:5000,-1], basket[:5000
 
 X_train, X_test, y_train, y_test = train_test_split(X,y,test_size=0.5,random_state=0, shuffle=True)
 
-start = time.time()
-neigh = KNeighborsClassifier(n_neighbors=3)
-neigh.fit(X_train, y_train)
+for i in [1,2,3,4,5]:
+    start = time.time()
+    neigh = KNeighborsClassifier(n_neighbors=i)
+    neigh.fit(X_train, y_train)
 
-print("With a four category dataset, the K-Nearest Neighbors",end="")
-print(" algorithm can classify images at", neigh.score(X_test, y_test)*100, end="")
-print("% accuracy in", time.time()-start, "seconds.")
+    print(i, ":")
+    
+    print("With a four category dataset, the K-Nearest Neighbors",end="")
+    print(" algorithm can classify images at", neigh.score(X_test, y_test)*100, end="")
+    print("% accuracy in", time.time()-start, "seconds.\n")
+
+
 
